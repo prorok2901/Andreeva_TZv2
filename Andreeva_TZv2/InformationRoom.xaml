@@ -1,0 +1,21 @@
+﻿<Page x:Class="Andreeva_TZv2.InformationRoom"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Andreeva_TZv2"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="250"
+      Title="InformationRoom">
+    <Grid>
+        <Label Margin="60,10,60,162" Content="Краткая информация:;"/>
+        <TextBox Margin="10,38,10,114" x:Name="Info"/>
+
+        <Label Margin="5,90,151,79" Content="кол-во комнат:"/>
+        <TextBox Margin="104,95,0,84" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="24" x:Name="CountRoom"/>
+        <Label Margin="29,121,146,47" Content="Стоимость:"/>
+        <TextBox Margin="104,121,0,53" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="86" x:Name="Price"/>
+        <Button Style="{DynamicResource ButtonK}" Content="Выбрать комнату" Margin="66,158,68,10" Click="Button_Click"/>
+    </Grid>
+
+</Page>
