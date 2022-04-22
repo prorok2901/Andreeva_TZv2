@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Andreeva_TZv2
 {
@@ -40,16 +30,16 @@ namespace Andreeva_TZv2
             {
                 int i = int.Parse(NumberRoom.Text);
                 BD.BorrowRoom borowwRoom = andreeva_tz.BorrowRoom.Where(a => a.InfoRoom.NumberRoom == i && a.Client == LoginClient.Text).FirstOrDefault();
-                BD.BookingHistory client = new BD.BookingHistory
+                BD.BookingHistory bookingHistory = new BD.BookingHistory
                 {
                     borrowRoom = borowwRoom.ID,
 
-                    DepartureDate = DateTime.Parse(DataOtbitiya.Text)//тут косяк
+                    DepartureDate = DateTime.Parse(DataOtbitiya.Text)
                 };
 
-                if(Comment.Text != null) client.Cause = Comment.Text;
+                if(Comment.Text != null) bookingHistory.Cause = Comment.Text;
 
-                andreeva_tz.BookingHistory.Add(client);
+                andreeva_tz.BookingHistory.Add(bookingHistory);
                 andreeva_tz.SaveChanges();
             }
         }

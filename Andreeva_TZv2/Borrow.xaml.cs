@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Andreeva_TZv2
 {
@@ -20,20 +12,43 @@ namespace Andreeva_TZv2
     /// </summary>
     public partial class Borrow : Page
     {
+        BD.Administrator admin;
         Registration registration;
         static DataRoom informationRoom;
 
         BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
 
-        public Borrow()
+        public Borrow(BD.Administrator _admin)
         {
             InitializeComponent();
             ComboBoxLogin();
+            admin = _admin;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(loginClient.SelectedIndex != -1 && CountDay.Text != null &&
+                DataZaseleniya.Text != null)
+            {
+                BD.Client client = andreeva_TZ.Client.Where(a => a.Login == loginClient.Text).FirstOrDefault();
 
+                BD.BorrowRoom borrow = new BD.BorrowRoom
+                {
+                    Room = int.Parse(NumberRoomHotel.Text),
+                    CountDay = int.Parse(CountDay.Text),
+                    Client = client.Login,
+                    Administrotor = admin.login,
+                    SettlementDate = DateTime.Parse(DataZaseleniya.Text),
+                };
+                andreeva_TZ.BorrowRoom.Add(borrow);
+                andreeva_TZ.SaveChanges();
+
+                MessageBox.Show("Номер забронирован клиентом: "+client.Name);
+            }
+            else
+            {
+                MessageBox.Show("Кто-то косячит");
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

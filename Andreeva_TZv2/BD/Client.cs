@@ -22,6 +22,7 @@ namespace Andreeva_TZv2.BD
     
         public string Login { get; set; }
         public string Name { get; set; }
+        public string Opisanie { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BorrowRoom> BorrowRoom { get; set; }

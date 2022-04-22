@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 // e6bf79 a98434 FFC373 F5DEB3
 
@@ -39,11 +32,12 @@ namespace Andreeva_TZv2
     */
     public partial class MainWindow : Window
     {
-        static Functional _functional = new Functional();
+        static Functional _functional;
         BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
 
         static bool InKognito = true;
 
+        BD.Administrator admin;
 
         public MainWindow()
         {
@@ -64,6 +58,8 @@ namespace Andreeva_TZv2
                     BD.Administrator basa = (BD.Administrator)andreeva_TZ.Administrator.Where(a => a.login == login && a.Password == password).FirstOrDefault();
                     if (basa != null)
                     {
+                        admin = basa;
+                        _functional = new Functional(admin);
                         if (_functional != null)
                         {
                             _functional.Show();
@@ -73,7 +69,6 @@ namespace Andreeva_TZv2
                             _functional.Activate();
                         }
                         Visibility = Visibility.Hidden;
-                        Close();
                     }
                     else
                     {
@@ -163,7 +158,7 @@ namespace Andreeva_TZv2
         {
             if (InKognito)
             {
-                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokOTK.png"));
+                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokOTK.png"));
                 Password.Opacity = 1;
                 MaskaPassword.Opacity = 0;
                 Password.Text = MaskaPassword.Password;
@@ -172,7 +167,7 @@ namespace Andreeva_TZv2
             }
             else
             {
-                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokZAK.png"));
+                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokZAK.png"));
                 Password.Opacity = 0;
                 MaskaPassword.Opacity = 1;
                 InKognito = true;
@@ -184,94 +179,3 @@ namespace Andreeva_TZv2
         //Спектакль Джо - Портрет
     }
 }
-
-/*
- 
-use DayAndNight 
-go
-CREATE TABLE [Client] (
-	Login varchar(32) NOT NULL,
-	Name varchar(32) NOT NULL,
-	PassportDetails varchar(10) NOT NULL,
-  CONSTRAINT [PK_CLIENT] PRIMARY KEY CLUSTERED
-  (
-  [Login] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
-CREATE TABLE [Administrator] (
-	login varchar(32) NOT NULL,
-	Password varchar(16) NOT NULL,
-	Name varchar(32) NOT NULL,
-	Adres varchar(255),
-  CONSTRAINT [PK_ADMINISTRATOR] PRIMARY KEY CLUSTERED
-  (
-  [login] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
-CREATE TABLE [InfoRoom] (
-	NumberRoom integer NOT NULL,
-	CountRoom integer NOT NULL,
-	Capacity integer NOT NULL,
-	TypeRoom varchar(10) NOT NULL,
-	Price float(30) NOT NULL,
-	RoomDescription float,
-  CONSTRAINT [PK_INFOROOM] PRIMARY KEY CLUSTERED
-  (
-  [NumberRoom] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
-CREATE TABLE [BookingHistory] (
-	borrowRoom integer NOT NULL,
-	DepartureDate date NOT NULL,
-	Comment varchar(255) Not null,
-  CONSTRAINT [PK_BOOKINGHISTORY] PRIMARY KEY CLUSTERED
-  (
-  [borrowRoom] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
-CREATE TABLE [BorrowRoom] (
-	ID integer NOT NULL,
-	Room integer NOT NULL,
-	Client varchar(32) NOT NULL,
-	Administrotor varchar(32) NOT NULL,
-	CountDay date NOT NULL,
-	SettlementDate date NOT NULL,
-  CONSTRAINT [PK_BORROWROOM] PRIMARY KEY CLUSTERED
-  (
-  [ID] ASC
-  ) WITH (IGNORE_DUP_KEY = OFF)
-
-)
-GO
-
-
-
-ALTER TABLE [BookingHistory] WITH CHECK ADD CONSTRAINT [BookingHistory_fk0] FOREIGN KEY ([borrowRoom]) REFERENCES [BorrowRoom]([ID])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [BookingHistory] CHECK CONSTRAINT [BookingHistory_fk0]
-GO
-
-ALTER TABLE [BorrowRoom] WITH CHECK ADD CONSTRAINT [BorrowRoom_fk0] FOREIGN KEY ([Room]) REFERENCES [InfoRoom]([NumberRoom])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [BorrowRoom] CHECK CONSTRAINT [BorrowRoom_fk0]
-GO
-ALTER TABLE [BorrowRoom] WITH CHECK ADD CONSTRAINT [BorrowRoom_fk1] FOREIGN KEY ([Client]) REFERENCES [Client]([Login])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [BorrowRoom] CHECK CONSTRAINT [BorrowRoom_fk1]
-GO
-ALTER TABLE [BorrowRoom] WITH CHECK ADD CONSTRAINT [BorrowRoom_fk2] FOREIGN KEY ([Administrotor]) REFERENCES [Administrator]([login])
-ON UPDATE CASCADE
-GO
-ALTER TABLE [BorrowRoom] CHECK CONSTRAINT [BorrowRoom_fk2]
-GO*/

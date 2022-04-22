@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace Andreeva_TZv2
 {
     /// <summary>
@@ -41,41 +30,52 @@ namespace Andreeva_TZv2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            DateTime dateLast;
             ListRoom.Items.Clear();
-            int roomText = int.Parse(CountRoom.Text);
-            int peopleText = int.Parse(CountPeople.Text);
+            BD.BorrowRoom borrowRoom;
 
-            var infoRoom = andreeva_TZ.InfoRoom.Where(a =>
-                a.TypeRoom == TypeRoom.Text &&
-                a.CountRoom >= roomText &&
-                a.Capacity >= peopleText).ToList();
 
-            foreach (BD.InfoRoom room in infoRoom)
+            foreach (BD.InfoRoom room in andreeva_TZ.InfoRoom)
             {
-                DateTime dateLast;
                 lastDate = enterDate.AddDays(countDay);
-                var roomList = andreeva_TZ.BorrowRoom.Where(a => a.Room == room.NumberRoom).ToList();
-
-                foreach (var _room in roomList)
+                
+                borrowRoom = (BD.BorrowRoom)andreeva_TZ.BorrowRoom.Where(a => a.Room == room.NumberRoom).FirstOrDefault();
+                if (borrowRoom!=null)
                 {
-                    dateLast = _room.SettlementDate.AddDays(_room.CountDay);
-
-                    if ((enterDate >= _room.SettlementDate) && (enterDate <= dateLast))
+                    dateLast = borrowRoom.SettlementDate.AddDays(borrowRoom.CountDay);
+                    if((!(borrowRoom.SettlementDate < enterDate) && !(dateLast > enterDate)) || 
+                        (!(borrowRoom.SettlementDate < lastDate) && !(dateLast > lastDate)))
                     {
-                        Button numberRoom = new Button
-                        {
-                            Content = room.NumberRoom,
-
-                        };
-                        numberRoom.Width = 60;
-                        numberRoom.Height = 20;
-                        numberRoom.Click += InformationRoom;
-
-                        ListRoom.Items.Add(numberRoom);
+                        Proverka(room);
                     }
-
+                    
+                }
+                else
+                {
+                    Proverka(room);
                 }
             }
+        }
+        private void Proverka(BD.InfoRoom room)
+        {
+            if((TypeRoom.Text == room.TypeRoom) && (int.Parse(CountPeople.Text) >= room.Capacity) && (int.Parse(CountRoom.Text) == room.CountRoom))
+            {
+                CreateButtonRoom(room);
+            }  
+        }
+
+        private void CreateButtonRoom(BD.InfoRoom room)
+        {
+            Button numberRoom = new Button
+            {
+                Content = room.NumberRoom,
+
+            };
+            numberRoom.Width = 60;
+            numberRoom.Height = 20;
+            numberRoom.Click += InformationRoom;
+
+            ListRoom.Items.Add(numberRoom);
         }
 
         private void InformationRoom(object sender, RoutedEventArgs e)
@@ -93,9 +93,9 @@ namespace Andreeva_TZv2
                 CountPeople.Items.Add(i);
                 CountRoom.Items.Add(i);
             }
-            TypeRoom.Items.Add("Стандарт");
-            TypeRoom.Items.Add("Люкс");
-            TypeRoom.Items.Add("Апартаменты");
+            TypeRoom.Items.Add("стандарт");
+            TypeRoom.Items.Add("люкс");
+            TypeRoom.Items.Add("апартаменты");
         }
     }
 }

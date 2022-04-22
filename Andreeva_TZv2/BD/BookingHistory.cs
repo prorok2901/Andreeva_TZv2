@@ -14,10 +14,10 @@ namespace Andreeva_TZv2.BD
     
     public partial class BookingHistory
     {
+        public int ID { get; set; }
         public int borrowRoom { get; set; }
         public System.DateTime DepartureDate { get; set; }
         public string Cause { get; set; }
-        public int ID { get; set; }
     
         public virtual BorrowRoom BorrowRoom1 { get; set; }
     }

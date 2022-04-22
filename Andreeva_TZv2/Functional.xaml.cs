@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Andreeva_TZv2
 {
@@ -19,17 +7,20 @@ namespace Andreeva_TZv2
     /// </summary>
     public partial class Functional : Window
     {
+        BD.Administrator admin;
         static LiberationRoom liberationRoom = new LiberationRoom();
-        static Borrow borrow = new Borrow();
+        static Borrow borrow;
         static MainWindow authorization = new MainWindow();
 
-        public Functional()
+        public Functional(BD.Administrator _admin)
         {
             InitializeComponent();
+            admin = _admin;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            borrow = new Borrow(admin);
             FunctionFrame.Navigate(borrow);
         }
 
@@ -44,7 +35,6 @@ namespace Andreeva_TZv2
                 authorization.Activate();
             }
             authorization.WindowHidder();
-            this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

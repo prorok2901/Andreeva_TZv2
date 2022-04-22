@@ -13,23 +13,20 @@
         <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Silver" CornerRadius="13">
             <Grid>
 
-                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="283,6,11,230" Name="TypeRoom"/>
-                <Label Margin="195,2,107,230" Content="Класс номера:"/>
-                
-                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="108,30,244,208" Name="CountPeople"/>
-                <Label Margin="10,26,303,208" Content="Кол-во чел:"/>
-                
-                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="108,6,244,232" Name="CountRoom" Text=""/>
-                <Label Margin="10,2,283,234" Content="Кол-во комнат:"/>
-                
-                <TextBox Margin="284,28,10,210" Name="Price" Background="#F5DEB3" BorderThickness="0,0,0,3" BorderBrush="#e6bf79"/>
-                <Label Margin="226,25,106,208" Content="цена до:"/>
+                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="99,6,195,230" Name="TypeRoom"/>
+                <Label Margin="11,6,291,226" Content="Класс номера:"/>
 
-                <ListBox Margin="10,89,290,10" x:Name="ListRoom"/>
+                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="342,31,10,207" Name="CountPeople"/>
+                <Label Margin="244,27,69,207" Content="Кол-во чел:"/>
 
-                <Button Content="Найти" Margin="19,57,303,176" Background="#FFC373" Click="Button_Click" Style="{DynamicResource ButtonK}"/>
+                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="342,10,10,228" Name="CountRoom" Text=""/>
+                <Label Margin="244,6,49,230" Content="Кол-во комнат:"/>
 
-                <Frame x:Name="InfoRoom" Margin="130,55,10,10"/>
+                <ListBox Style="{DynamicResource ListBoxOKR}" Margin="10,71,290,10" x:Name="ListRoom" BorderBrush="#FFE6BF79" FontSize="14" Background="#F5DEB3" HorizontalContentAlignment="Center"/>
+
+                <Button Content="Найти" Margin="21,39,301,194" Click="Button_Click" Style="{DynamicResource ButtonK}"/>
+
+                <Frame x:Name="InfoRoom" Margin="124,57,16,8"/>
 
             </Grid>
         </Border>
