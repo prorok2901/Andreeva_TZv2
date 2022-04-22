@@ -24,67 +24,78 @@ namespace Andreeva_TZv2
 
         BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
 
+        DateTime enterDate;
+        DateTime lastDate;
         TextBox textBox;
-        public DataRoom(TextBox box)
+        int countDay;
+        TextBox price;
+        public DataRoom(TextBox box, int _countDay, TextBox _price, DateTime _enterDate)
         {
             InitializeComponent();
             textBox = box;
+            countDay = _countDay;
+            price = _price;
+            enterDate = _enterDate;
+            ComboBoxDATA();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button numberRoom;
-            StackPanel stack = new StackPanel();
+            ListRoom.Items.Clear();
+            int roomText = int.Parse(CountRoom.Text);
+            int peopleText = int.Parse(CountPeople.Text);
 
-            int CoutRooms = 30;
+            var infoRoom = andreeva_TZ.InfoRoom.Where(a =>
+                a.TypeRoom == TypeRoom.Text &&
+                a.CountRoom >= roomText &&
+                a.Capacity >= peopleText).ToList();
 
-            int number = 1;
-            int Count = 1;
-
-            for (int i = 0; i < CoutRooms; i++)
+            foreach (BD.InfoRoom room in infoRoom)
             {
-                if (Count % 9 == 0)
+                DateTime dateLast;
+                lastDate = enterDate.AddDays(countDay);
+                var roomList = andreeva_TZ.BorrowRoom.Where(a => a.Room == room.NumberRoom).ToList();
+
+                foreach (var _room in roomList)
                 {
-                    ListRoom.Children.Add(stack);
-                    stack = new StackPanel();
-                    Count = 1;
+                    dateLast = _room.SettlementDate.AddDays(_room.CountDay);
+
+                    if ((enterDate >= _room.SettlementDate) && (enterDate <= dateLast))
+                    {
+                        Button numberRoom = new Button
+                        {
+                            Content = room.NumberRoom,
+
+                        };
+                        numberRoom.Width = 60;
+                        numberRoom.Height = 20;
+                        numberRoom.Click += InformationRoom;
+
+                        ListRoom.Items.Add(numberRoom);
+                    }
+
                 }
-
-                numberRoom = new Button
-                {
-                    Content = number,
-
-                };
-                numberRoom.Width = 20;
-                numberRoom.Height = 20;
-                numberRoom.Click += InformationRoom;
-
-                stack.Children.Add(numberRoom);
-                Count++;
-                number++;
             }
-            ListRoom.Children.Add(stack);
         }
 
         private void InformationRoom(object sender, RoutedEventArgs e)
         {
             int numberRoom = int.Parse((sender as Button).Content.ToString());
-            infoRoom = new InformationRoom(numberRoom, textBox);
+            infoRoom = new InformationRoom(numberRoom, textBox, countDay, price);
             InfoRoom.Navigate(infoRoom);
 
         }
 
         private void ComboBoxDATA()
         {
-            for(int i = 1; i<=5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 CountPeople.Items.Add(i);
+                CountRoom.Items.Add(i);
             }
-            //foreach (BD.Client r in andreeva_TZ.Client.ToList())
-            //{
-            //    loginClient.Items.Add(r.Login);
-            //}
-
+            TypeRoom.Items.Add("Стандарт");
+            TypeRoom.Items.Add("Люкс");
+            TypeRoom.Items.Add("Апартаменты");
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Andreeva_TZv2
     public partial class Borrow : Page
     {
         Registration registration;
-        private int numberRoom;
         static DataRoom informationRoom;
 
         BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
@@ -39,13 +38,17 @@ namespace Andreeva_TZv2
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            informationRoom = new DataRoom(NumberRoomHotel);
-            NavigationService.Navigate(informationRoom);
-        }
-
-        public void NumberRoom(int number)
-        {
-            numberRoom = number;
+            try
+            {
+                int countDay = int.Parse(CountDay.Text);
+                informationRoom = new DataRoom(NumberRoomHotel, countDay, PriceBox, DateTime.Parse(DataZaseleniya.Text));
+                NavigationService.Navigate(informationRoom);
+            }
+            catch
+            {
+                MessageBox.Show("Вы не заполнили данные выше");
+            }
+           
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

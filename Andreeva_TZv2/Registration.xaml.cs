@@ -56,6 +56,7 @@ namespace Andreeva_TZv2
         }
         private void ComboBoxLogin()
         {
+            login.Items.Clear();
             foreach (BD.Client r in andreeva_tz.Client.ToList())
             {
                 login.Items.Add(r.Login);

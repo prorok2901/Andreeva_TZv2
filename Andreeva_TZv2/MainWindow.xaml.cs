@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 // e6bf79 a98434 FFC373 F5DEB3
 
 namespace Andreeva_TZv2
@@ -22,7 +23,7 @@ namespace Andreeva_TZv2
     Программа будет использоваться на ресепшне администратором для оформления гостями номеров отеля.
 
     После запуска происходит авторизация. Ввод логина и пароля. Приложение предоставляет возможность просмотра: Данных гостей.
-    В базе должны храниться: ФИО, номер телефона, паспортные данные и текущее место жительства;
+    В базе должны храниться: ФИО, номер телефона;
 
     Информации о номерах. Вместимость, количество комнат, тип номера (стандарт, люкс, апартамент), описание номера, цена.
     Должен быть способ фильтрации вывода номеров (свободные и занятые в определенный промежуток времени);
@@ -116,15 +117,16 @@ namespace Andreeva_TZv2
                 CollorText(Password, true);
             }
         }
-
         private void Password_LostFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (Password.Text == "" && MaskaPassword.Password == "")
+            if (MaskaPassword.Password == "")
             {
                 Password.Text = "Введите пароль";
                 CollorText(Password, false);
                 Password.Opacity = 1;
+                MaskaPassword.Opacity = 0;
             }
+
         }
         private void Login_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -161,18 +163,20 @@ namespace Andreeva_TZv2
         {
             if (InKognito)
             {
-                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\proro\source\repos\Andreeva_TZv2\Andreeva_TZv2\zamokOTK.png"));
+                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokOTK.png"));
                 Password.Opacity = 1;
                 MaskaPassword.Opacity = 0;
                 Password.Text = MaskaPassword.Password;
                 InKognito = false;
+                MaskaPassword.IsEnabled = false;
             }
             else
             {
-                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\proro\source\repos\Andreeva_TZv2\Andreeva_TZv2\zamokZAK.png"));
+                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokZAK.png"));
                 Password.Opacity = 0;
                 MaskaPassword.Opacity = 1;
                 InKognito = true;
+                MaskaPassword.IsEnabled = true;
             }
 
 

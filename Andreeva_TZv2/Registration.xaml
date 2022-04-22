@@ -15,7 +15,7 @@
                 <TextBox x:Name ="NameBox" Style="{DynamicResource TextBoxK}" Height="37" Margin="86,42,86,181" Text="Введите имя клиента" GotFocus="NameBox_GotFocus" LostFocus="NameBox_LostFocus"/>
                 <TextBox Margin="101,147,101,82" Style="{DynamicResource TextBoxK}" TouchEnter="TextBox_TouchEnter" Text="Код подтверждения"/>
 
-                <Button Style="{DynamicResource ButtonK}" Margin="146,210,146,24" Content="Забронировать" Click="Button_Click"/>
+                <Button Style="{DynamicResource ButtonK}" Margin="136,213,136,21" Content="Зарегистрировать" Click="Button_Click"/>
 
             </Grid>
         </Border>

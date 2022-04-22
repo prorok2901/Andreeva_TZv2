@@ -16,14 +16,18 @@
                 <TextBlock Text="Логин клиента: " RenderTransformOrigin="0.515,0.486" Margin="88,10,195,222" FontSize="14"/>
                 <ComboBox IsReadOnly="True" Template="{DynamicResource ComboBoxPeredelka}" HorizontalAlignment="Left" Margin="195,8,0,0" VerticalAlignment="Top" Width="124" RenderTransformOrigin="5.223,1.388" Height="26" Name="loginClient" FontSize="14"/>
                 <Button Style="{DynamicResource ButtonK}" Content="Зарегистрировать" Margin="143,43,133,191" Click="Button_Click_2"/>
-                <Button Style="{DynamicResource ButtonK}" Content="Информация о номере" Margin="242,153,10,75" Click="Button_Click_1"/>
-                <TextBlock Text="Номер в отеле: " Margin="97,161,196,75" FontSize="14"/>
-                <TextBox x:Name="NumberRoomHotel" Background="#F5DEB3" BorderThickness="0,0,0,0"  Margin="201,154,154,76" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+                <Button Style="{DynamicResource ButtonK}" Content="Информация о номере" Margin="242,117,10,111" Click="Button_Click_1"/>
+                <TextBlock Text="Номер в отеле: " Margin="74,122,219,114" FontSize="14"/>
+                <TextBox x:Name="NumberRoomHotel" Background="#F5DEB3" BorderThickness="0,0,0,0"  Margin="180,119,155,114" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" IsReadOnly="True" Cursor="Arrow"/>
 
-                <TextBox Text="Дата заселения" x:Name="DataZaseleniya" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="27" Margin="32,104,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="137" LostFocus="TextBox_LostFocus_1" GotFocus="TextBox_GotFocus_1" FontSize="14"/>
+                <TextBox Text="Дата заселения" x:Name="DataZaseleniya" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="27" Margin="38,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="137" LostFocus="TextBox_LostFocus_1" GotFocus="TextBox_GotFocus_1" FontSize="14"/>
 
-                <TextBox Text="Кол-во дней:" x:Name="CountDay" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="30" Margin="218,101,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="133" LostFocus="TextBox_LostFocus" GotFocus="TextBox_GotFocus" FontSize="14"/>
+                <TextBox Text="Кол-во дней:" x:Name="CountDay" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="30" Margin="218,74,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="134" LostFocus="TextBox_LostFocus" GotFocus="TextBox_GotFocus" FontSize="14"/>
                 <TextBox Text="Код подтверждения" x:Name="CodePOD" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="28" Margin="126,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" GotFocus="TextBox_GotFocus_2" LostFocus="TextBox_LostFocus_2" FontSize="14"/>
+
+                <TextBlock Text="Итоговая стоимость:" Margin="38,156,212,70" FontSize="14"/>
+                <TextBox x:Name="PriceBox" Margin="182,154,58,75" BorderBrush="#e6bf79" BorderThickness="0,0,0,3" Background="#F5DEB3" IsReadOnly="True" Cursor="Arrow" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
 
                 <Button Style="{DynamicResource ButtonK}" Margin="151,223,141,10" Content="Забронировать" Click="Button_Click"/>
 

@@ -22,18 +22,26 @@ namespace Andreeva_TZv2
     {
         TextBox box;
         int numberRoom;
+        int countDay;
+        TextBox price;
+
+        double priceRoom;
+
         BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
-        public InformationRoom(int _numberRoom, TextBox text)
+        public InformationRoom(int _numberRoom, TextBox text, int _countDay, TextBox _price)
         {
             InitializeComponent();
             numberRoom = _numberRoom;
             box = text;
+            countDay = _countDay;
+            price = _price;
             if (numberRoom != 0)
             {
                 BD.InfoRoom basa = (BD.InfoRoom)andreeva_TZ.InfoRoom.Where(a => a.NumberRoom == numberRoom).FirstOrDefault();
                 if (basa != null)
                 {
                     CountRoom.Text = basa.CountRoom.ToString();
+                    priceRoom = basa.Price;
                     Price.Text = basa.Price.ToString();
                 }
             }
@@ -45,6 +53,7 @@ namespace Andreeva_TZv2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            price.Text = (priceRoom * countDay).ToString();
             box.Text = (numberRoom).ToString(); 
             NavigationService.GoBack();
         }

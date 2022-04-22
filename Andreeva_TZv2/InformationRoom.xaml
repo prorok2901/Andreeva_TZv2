@@ -12,9 +12,9 @@
         <TextBox Margin="10,38,10,114" x:Name="Info"/>
 
         <Label Margin="5,90,151,79" Content="кол-во комнат:"/>
-        <TextBox Margin="104,95,0,84" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="24" x:Name="CountRoom"/>
+        <TextBox Margin="104,95,0,84" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="24" x:Name="CountRoom" IsReadOnly="True"/>
         <Label Margin="29,121,146,47" Content="Стоимость:"/>
-        <TextBox Margin="104,121,0,53" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="86" x:Name="Price"/>
+        <TextBox Margin="104,121,0,53" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="86" x:Name="Price" IsReadOnly="True"/>
         <Button Style="{DynamicResource ButtonK}" Content="Выбрать комнату" Margin="66,158,68,10" Click="Button_Click"/>
     </Grid>
 

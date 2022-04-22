@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Andreeva_TZv2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="363" Width="397">
+        Title="MainWindow" ResizeMode="NoResize" Height="380" Width="397">
     <Window.Resources>
 
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#e6bf79"/>

@@ -201,8 +201,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="zamokOTK.png" />
     <Resource Include="zamokZAK.png" />
   </ItemGroup>

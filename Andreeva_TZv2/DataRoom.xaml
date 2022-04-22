@@ -13,8 +13,8 @@
         <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Silver" CornerRadius="13">
             <Grid>
 
-                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="284,6,10,237" Name="TypeRoom"/>
-                <Label Margin="196,0,106,232" Content="Класс номера:"/>
+                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="283,6,11,230" Name="TypeRoom"/>
+                <Label Margin="195,2,107,230" Content="Класс номера:"/>
                 
                 <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="108,30,244,208" Name="CountPeople"/>
                 <Label Margin="10,26,303,208" Content="Кол-во чел:"/>
@@ -25,9 +25,9 @@
                 <TextBox Margin="284,28,10,210" Name="Price" Background="#F5DEB3" BorderThickness="0,0,0,3" BorderBrush="#e6bf79"/>
                 <Label Margin="226,25,106,208" Content="цена до:"/>
 
-                <StackPanel Margin="10,89,283,10" x:Name="ListRoom" Orientation="Horizontal"/>
+                <ListBox Margin="10,89,290,10" x:Name="ListRoom"/>
 
-                <Button Content="Найти" Margin="10,57,312,176" Background="#FFC373" Click="Button_Click" Style="{DynamicResource ButtonK}"/>
+                <Button Content="Найти" Margin="19,57,303,176" Background="#FFC373" Click="Button_Click" Style="{DynamicResource ButtonK}"/>
 
                 <Frame x:Name="InfoRoom" Margin="130,55,10,10"/>
 
