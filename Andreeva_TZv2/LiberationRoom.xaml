@@ -13,19 +13,19 @@
             <Grid>
 
                 <TextBlock Text="Логин клиента: " RenderTransformOrigin="0.515,0.486" Margin="71,14,223,218"/>
-                <ComboBox Name="LoginClient" HorizontalAlignment="Left" Template="{DynamicResource ComboBoxPeredelka}" Margin="185,16,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.5,0.565" Height="23"/>
+                <ComboBox Name="LoginClient" HorizontalAlignment="Left" Template="{DynamicResource ComboBoxPeredelka}" Margin="185,16,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.5,0.565" Height="23" MouseEnter="LoginClient_MouseEnter"/>
 
                 <TextBlock Text="Забронированный номер: " Margin="10,42,223,192" />
 
                 <TextBlock Text="Причина раннего ухода: " Margin="30,79,201,155" />
-                <TextBox x:Name="Comment" Height="98" Margin="5,105,176,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+                <TextBox Style="{DynamicResource InfoRoomStyle}" x:Name="Comment" Height="98" Margin="5,105,176,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
 
-                <TextBox x:Name="DataOtbitiya" Text="Дата отбытия:" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="30" Margin="224,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" FontSize="14"/>
-                <TextBox x:Name="CodePOD" Text="Код подтверждения" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="28" Margin="224,175,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" FontSize="14"/>
+                <TextBox x:Name="DataOtbitiya" Text="Дата отбытия:" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="30" Margin="224,105,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" FontSize="14" GotFocus="DataOtbitiya_GotFocus" LostFocus="DataOtbitiya_LostFocus"/>
+                <TextBox x:Name="CodePOD" Text="Код подтверждения" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="28" Margin="224,175,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" FontSize="14" LostFocus="CodePOD_LostFocus" GotFocus="CodePOD_GotFocus"/>
 
-                <ComboBox Name="NumberRoom" Template="{DynamicResource ComboBoxPeredelka}" HorizontalAlignment="Left" Margin="185,44,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.5,0.565" Height="23"/>
+                <ComboBox Name="NumberRoom" Template="{DynamicResource ComboBoxPeredelka}" HorizontalAlignment="Left" Margin="185,44,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.5,0.565" Height="23" MouseEnter="NumberRoom_MouseEnter"/>
 
-                <Button Background="#FFC373" Content="Освободить номер" Margin="128,222,137,15" Click="Button_Click"/>
+                <Button Style="{DynamicResource ButtonK}" Content="Освободить номер" Margin="128,222,137,15" Click="Button_Click"/>
 
             </Grid>
         </Border>

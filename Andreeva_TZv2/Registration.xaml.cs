@@ -29,14 +29,18 @@ namespace Andreeva_TZv2
         {  
             if((BD.Client)andreeva_tz.Client.Where(a => a.Login == PhoneClient.Text).FirstOrDefault() == null)
             {
-                BD.Client client = new BD.Client
+                if(CodePOD.Text == "123")
                 {
-                    Login = PhoneClient.Text,
-                    Name = NameBox.Text
-                };
-                andreeva_tz.Client.Add(client);
-                andreeva_tz.SaveChanges();
-                ComboBoxLogin();
+                    BD.Client client = new BD.Client
+                    {
+                        Login = PhoneClient.Text,
+                        Name = NameBox.Text
+                    };
+                    andreeva_tz.Client.Add(client);
+                    andreeva_tz.SaveChanges();
+                    ComboBoxLogin();
+                }
+                MessageBox.Show("Не праильный код подтверждения");
             }
             else
             {

@@ -35,11 +35,17 @@ namespace Andreeva_TZv2
                 authorization.Activate();
             }
             authorization.WindowHidder();
+            Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             FunctionFrame.Navigate(liberationRoom);
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

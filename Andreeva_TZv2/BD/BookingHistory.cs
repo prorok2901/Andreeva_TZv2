@@ -18,7 +18,5 @@ namespace Andreeva_TZv2.BD
         public int borrowRoom { get; set; }
         public System.DateTime DepartureDate { get; set; }
         public string Cause { get; set; }
-    
-        public virtual BorrowRoom BorrowRoom1 { get; set; }
     }
 }

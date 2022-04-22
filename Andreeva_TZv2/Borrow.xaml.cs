@@ -7,9 +7,6 @@ using System.Windows.Navigation;
 
 namespace Andreeva_TZv2
 {
-    /// <summary>
-    /// Логика взаимодействия для Borrow.xaml
-    /// </summary>
     public partial class Borrow : Page
     {
         BD.Administrator admin;
@@ -30,24 +27,31 @@ namespace Andreeva_TZv2
             if(loginClient.SelectedIndex != -1 && CountDay.Text != null &&
                 DataZaseleniya.Text != null)
             {
-                BD.Client client = andreeva_TZ.Client.Where(a => a.Login == loginClient.Text).FirstOrDefault();
-
-                BD.BorrowRoom borrow = new BD.BorrowRoom
+                if(CodePOD.Text == "123")
                 {
-                    Room = int.Parse(NumberRoomHotel.Text),
-                    CountDay = int.Parse(CountDay.Text),
-                    Client = client.Login,
-                    Administrotor = admin.login,
-                    SettlementDate = DateTime.Parse(DataZaseleniya.Text),
-                };
-                andreeva_TZ.BorrowRoom.Add(borrow);
-                andreeva_TZ.SaveChanges();
+                    BD.Client client = andreeva_TZ.Client.Where(a => a.Login == loginClient.Text).FirstOrDefault();
 
-                MessageBox.Show("Номер забронирован клиентом: "+client.Name);
+                    BD.BorrowRoom borrow = new BD.BorrowRoom
+                    {
+                        Room = int.Parse(NumberRoomHotel.Text),
+                        CountDay = int.Parse(CountDay.Text),
+                        Client = client.Login,
+                        Administrotor = admin.login,
+                        SettlementDate = DateTime.Parse(DataZaseleniya.Text),
+                    };
+                    andreeva_TZ.BorrowRoom.Add(borrow);
+                    andreeva_TZ.SaveChanges();
+
+                    MessageBox.Show("Успех!");
+                }
+                else
+                {
+                    MessageBox.Show("Неверный код подтверждения");
+                }  
             }
             else
             {
-                MessageBox.Show("Кто-то косячит");
+                MessageBox.Show("Данные указаны не все");
             }
         }
 

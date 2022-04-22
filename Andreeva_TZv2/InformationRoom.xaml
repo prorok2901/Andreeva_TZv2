@@ -9,7 +9,7 @@
       Title="InformationRoom">
     <Grid>
         <Label Margin="60,10,60,162" Content="Краткая информация:;"/>
-        <TextBox Margin="10,38,10,114" x:Name="Info"/>
+        <TextBox Style="{DynamicResource InfoRoomStyle}" Margin="10,38,10,114" x:Name="Info"/>
 
         <Label Margin="5,90,151,79" Content="кол-во комнат:"/>
         <TextBox  BorderBrush="#e6bf79" BorderThickness="0,0,0,3" Background="#F5DEB3" Cursor="Arrow" Margin="104,95,0,84" RenderTransformOrigin="0.493,0.508" HorizontalAlignment="Left" Width="24" x:Name="CountRoom" IsReadOnly="True"/>

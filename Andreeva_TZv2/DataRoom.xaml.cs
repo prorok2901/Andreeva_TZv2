@@ -33,12 +33,13 @@ namespace Andreeva_TZv2
             DateTime dateLast;
             ListRoom.Items.Clear();
             BD.BorrowRoom borrowRoom;
+            BD.BookingHistory HistoryborrowRoom;
 
 
             foreach (BD.InfoRoom room in andreeva_TZ.InfoRoom)
             {
                 lastDate = enterDate.AddDays(countDay);
-                
+
                 borrowRoom = (BD.BorrowRoom)andreeva_TZ.BorrowRoom.Where(a => a.Room == room.NumberRoom).FirstOrDefault();
                 if (borrowRoom!=null)
                 {
@@ -46,7 +47,7 @@ namespace Andreeva_TZv2
                     if((!(borrowRoom.SettlementDate < enterDate) && !(dateLast > enterDate)) || 
                         (!(borrowRoom.SettlementDate < lastDate) && !(dateLast > lastDate)))
                     {
-                        Proverka(room);
+                       
                     }
                     
                 }
@@ -61,7 +62,7 @@ namespace Andreeva_TZv2
             if((TypeRoom.Text == room.TypeRoom) && (int.Parse(CountPeople.Text) >= room.Capacity) && (int.Parse(CountRoom.Text) == room.CountRoom))
             {
                 CreateButtonRoom(room);
-            }  
+            }
         }
 
         private void CreateButtonRoom(BD.InfoRoom room)

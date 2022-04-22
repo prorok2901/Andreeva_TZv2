@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Andreeva_TZv2"
-        mc:Ignorable="d"
-        Title="MainWindow" ResizeMode="NoResize" Height="380" Width="397">
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="♥ День и Ночь ♠" Height="380" Width="397">
     <Window.Resources>
 
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#e6bf79"/>
@@ -72,10 +72,10 @@
 
                 <Image x:Name="Inkognito" Margin="250,31,61,13" Grid.Row="1" MouseDown="Inkognito_MouseDown" Source="/zamokZAK.png" />
 
-
                 <Button Style="{DynamicResource ButtonK}" Content="Войти" FontSize="18" FontStyle="Italic" FontWeight="Bold" Click="Button_Click" Grid.Row="2" Margin="126,14,127,13"/>
                 <Button Style="{DynamicResource ButtonK}" Content="Выйти из системы" FontStyle="Italic" FontWeight="Bold" Click="Button_Click_1" FontSize="14" Grid.Row="3" Margin="94,1,95,10"/>
             </Grid>
         </Border>
+        <Image Source="C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\fsdfgh1.png" Panel.ZIndex="-1" Margin="-279,-57,-32,-34"/>
     </Grid>
 </Window>

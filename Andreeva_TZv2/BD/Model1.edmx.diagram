@@ -4,14 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f78b19b9e1c341c0b89d603f74bb9e4a" Name="Diagram1">
-        <EntityTypeShape EntityType="DayAndNightModel.Administrator" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DayAndNightModel.BookingHistory" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DayAndNightModel.BorrowRoom" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DayAndNightModel.Client" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DayAndNightModel.InfoRoom" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+      <Diagram DiagramId="d5c052afca5a4546ade599affda4b8da" Name="Diagram1">
+        <EntityTypeShape EntityType="DayAndNightModel.Administrator" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayAndNightModel.BookingHistory" Width="1.5" PointX="6.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayAndNightModel.BorrowRoom" Width="1.5" PointX="4" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayAndNightModel.Client" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayAndNightModel.InfoRoom" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <AssociationConnector Association="DayAndNightModel.BorrowRoom_fk2" ManuallyRouted="false" />
-        <AssociationConnector Association="DayAndNightModel.BookingHistory_fk0" ManuallyRouted="false" />
         <AssociationConnector Association="DayAndNightModel.BorrowRoom_fk0" ManuallyRouted="false" />
         <AssociationConnector Association="DayAndNightModel.BorrowRoom_fk1" ManuallyRouted="false" />
       </Diagram>
