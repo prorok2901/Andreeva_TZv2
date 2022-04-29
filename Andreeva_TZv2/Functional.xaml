@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Andreeva_TZv2"
         mc:Ignorable="d"
         Title="♥ День и Ночь ♠" Height="360" Width="674" ResizeMode="NoResize">
+
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\fsdfgh1.png"/>
+    </Window.Background>
+
     <Border>
         <Grid>
             <Grid.RowDefinitions>
@@ -33,7 +38,6 @@
                     <Button Style="{DynamicResource ButtonK}" Margin="41,14,41,25" Content="Выйти из аккаунта" Click="Button_Click_1" Grid.Row="4"/>
                 </Grid>
             </Border>
-            <Image Source="C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\fsdfgh1.png" Panel.ZIndex="-1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="-126,-38,-126,-18"/>
             <Frame x:Name="FunctionFrame" Grid.Column="1" Margin="0,28,0,0" Grid.RowSpan="2" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Border>

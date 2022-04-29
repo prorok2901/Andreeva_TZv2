@@ -55,10 +55,14 @@
         </Style>
     </Window.Resources>
 
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\fsdfgh1.png"/>
+    </Window.Background>
+    
     <Grid>
 
         <TextBlock Margin="86,25,87,295" Text="♥День и ночь♠" FontFamily="Arial Rounded MT Bold" FontSize="18" TextAlignment="Center"/>
-        <Border Margin="25,57,19,24" CornerRadius="23"  Background = "#F5DEB3" BorderBrush="Silver" >
+        <Border Margin="25,57,19,24" CornerRadius="23"  Background = "#F5DEB3" BorderBrush="Silver">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
@@ -76,6 +80,6 @@
                 <Button Style="{DynamicResource ButtonK}" Content="Выйти из системы" FontStyle="Italic" FontWeight="Bold" Click="Button_Click_1" FontSize="14" Grid.Row="3" Margin="94,1,95,10"/>
             </Grid>
         </Border>
-        <Image Source="C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\fsdfgh1.png" Panel.ZIndex="-1" Margin="-279,-57,-32,-34"/>
+       
     </Grid>
 </Window>
