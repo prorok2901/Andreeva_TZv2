@@ -12,11 +12,17 @@ namespace Andreeva_TZv2.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class BookingHistory
+    public partial class role
     {
-        public int ID { get; set; }
-        public int borrowRoom { get; set; }
-        public System.DateTime DepartureDate { get; set; }
-        public string Cause { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public role()
+        {
+            this.user = new HashSet<user>();
+        }
+    
+        public string name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> user { get; set; }
     }
 }

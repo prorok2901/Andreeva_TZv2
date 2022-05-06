@@ -9,13 +9,13 @@ namespace Andreeva_TZv2
 {
     public partial class Borrow : Page
     {
-        BD.Administrator admin;
+        BD.user admin;
         Registration registration;
         static DataRoom informationRoom;
 
         BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
 
-        public Borrow(BD.Administrator _admin)
+        public Borrow(BD.user _admin)
         {
             InitializeComponent();
             ComboBoxLogin();
@@ -29,17 +29,17 @@ namespace Andreeva_TZv2
             {
                 if(CodePOD.Text == "123")
                 {
-                    BD.Client client = andreeva_TZ.Client.Where(a => a.Login == loginClient.Text).FirstOrDefault();
+                    BD.client client = andreeva_TZ.client.Where(a => a.phone == loginClient.Text).FirstOrDefault();
 
-                    BD.BorrowRoom borrow = new BD.BorrowRoom
+                    BD.borrow_room borrow = new BD.borrow_room
                     {
-                        Room = int.Parse(NumberRoomHotel.Text),
-                        CountDay = int.Parse(CountDay.Text),
-                        Client = client.Login,
-                        Administrotor = admin.login,
-                        SettlementDate = DateTime.Parse(DataZaseleniya.Text),
+                        room = int.Parse(NumberRoomHotel.Text),
+                        count_day = int.Parse(CountDay.Text),
+                        client = client.phone,
+                        administrator = admin.login,
+                        date_settlement = DateTime.Parse(DataZaseleniya.Text),
                     };
-                    andreeva_TZ.BorrowRoom.Add(borrow);
+                    andreeva_TZ.borrow_room.Add(borrow);
                     andreeva_TZ.SaveChanges();
 
                     MessageBox.Show("Успех!");
@@ -77,9 +77,9 @@ namespace Andreeva_TZv2
         }
         private void ComboBoxLogin()
         {
-            foreach (BD.Client r in andreeva_TZ.Client.ToList())
+            foreach (BD.client r in andreeva_TZ.client.ToList())
             {
-                loginClient.Items.Add(r.Login);
+                loginClient.Items.Add(r.phone);
             }
         }
 

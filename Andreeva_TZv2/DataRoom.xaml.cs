@@ -32,20 +32,19 @@ namespace Andreeva_TZv2
         {
             DateTime dateLast;
             ListRoom.Items.Clear();
-            BD.BorrowRoom borrowRoom;
-            BD.BookingHistory HistoryborrowRoom;
+            BD.borrow_room borrowRoom;
 
 
-            foreach (BD.InfoRoom room in andreeva_TZ.InfoRoom)
+            foreach (BD.info_room room in andreeva_TZ.info_room)
             {
                 lastDate = enterDate.AddDays(countDay);
 
-                borrowRoom = (BD.BorrowRoom)andreeva_TZ.BorrowRoom.Where(a => a.Room == room.NumberRoom).FirstOrDefault();
+                borrowRoom = (BD.borrow_room)andreeva_TZ.borrow_room.Where(a => a.room == room.num_room).FirstOrDefault();
                 if (borrowRoom!=null)
                 {
-                    dateLast = borrowRoom.SettlementDate.AddDays(borrowRoom.CountDay);
-                    if((!(borrowRoom.SettlementDate < enterDate) && !(dateLast > enterDate)) || 
-                        (!(borrowRoom.SettlementDate < lastDate) && !(dateLast > lastDate)))
+                    dateLast = borrowRoom.date_settlement.AddDays(borrowRoom.count_day);
+                    if((!(borrowRoom.date_settlement < enterDate) && !(dateLast > enterDate)) || 
+                        (!(borrowRoom.date_settlement < lastDate) && !(dateLast > lastDate)))
                     {
                        
                     }
@@ -57,19 +56,19 @@ namespace Andreeva_TZv2
                 }
             }
         }
-        private void Proverka(BD.InfoRoom room)
+        private void Proverka(BD.info_room room)
         {
-            if((TypeRoom.Text == room.TypeRoom) && (int.Parse(CountPeople.Text) >= room.Capacity) && (int.Parse(CountRoom.Text) == room.CountRoom))
+            if((TypeRoom.Text == room.type_room) && (int.Parse(CountPeople.Text) >= room.capacity) && (int.Parse(CountRoom.Text) == room.count_room))
             {
                 CreateButtonRoom(room);
             }
         }
 
-        private void CreateButtonRoom(BD.InfoRoom room)
+        private void CreateButtonRoom(BD.info_room room)
         {
             Button numberRoom = new Button
             {
-                Content = room.NumberRoom,
+                Content = room.num_room,
 
             };
             numberRoom.Width = 60;

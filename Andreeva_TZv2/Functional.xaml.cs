@@ -7,12 +7,12 @@ namespace Andreeva_TZv2
     /// </summary>
     public partial class Functional : Window
     {
-        BD.Administrator admin;
+        BD.user admin;
         static LiberationRoom liberationRoom = new LiberationRoom();
         static Borrow borrow;
         static MainWindow authorization = new MainWindow();
 
-        public Functional(BD.Administrator _admin)
+        public Functional(BD.user _admin)
         {
             InitializeComponent();
             admin = _admin;

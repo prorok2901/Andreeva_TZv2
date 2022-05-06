@@ -37,7 +37,7 @@ namespace Andreeva_TZv2
 
         static bool InKognito = true;
 
-        BD.Administrator admin;
+        BD.user admin;
 
         public MainWindow()
         {
@@ -55,7 +55,7 @@ namespace Andreeva_TZv2
                 {
                     Password.Text = MaskaPassword.Password;
                     string password = Password.Text;
-                    BD.Administrator basa = (BD.Administrator)andreeva_TZ.Administrator.Where(a => a.login == login && a.Password == password).FirstOrDefault();
+                    BD.user basa = (BD.user)andreeva_TZ.user.Where(a => a.login == login && a.password == password && a.role == "администратор").FirstOrDefault();
                     if (basa != null)
                     {
                         admin = basa;
@@ -153,6 +153,7 @@ namespace Andreeva_TZv2
                 box.Foreground = (Brush)bc.ConvertFrom("#404142");
             }
         }
+        //добавить таблицу статус юзера
 
         private void Inkognito_MouseDown(object sender, MouseButtonEventArgs e)
         {

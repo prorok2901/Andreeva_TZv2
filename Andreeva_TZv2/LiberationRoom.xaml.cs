@@ -25,24 +25,24 @@ namespace Andreeva_TZv2
                 if(CodePOD.Text == "123")
                 {
                     int i = int.Parse(NumberRoom.Text);
-                    BD.BorrowRoom borowwRoom = andreeva_tz.BorrowRoom.Where(a => a.InfoRoom.NumberRoom == i && a.Client == LoginClient.Text).FirstOrDefault();
+                    BD.borrow_room borowwRoom = andreeva_tz.borrow_room.Where(a => a.info_room.num_room == i && a.client == LoginClient.Text).FirstOrDefault();
 
                     DateTime date = DateTime.Parse(DataOtbitiya.Text);
 
-                    if (borowwRoom.SettlementDate <= date && date < borowwRoom.SettlementDate.AddDays(borowwRoom.CountDay))
+                    if (borowwRoom.date_settlement <= date && date < borowwRoom.date_settlement.AddDays(borowwRoom.count_day))
                     {
-                        BD.BookingHistory bookingHistory = new BD.BookingHistory
+                        BD.booking_history bookingHistory = new BD.booking_history
                         {
-                            borrowRoom = borowwRoom.ID,
+                            borrow_room = borowwRoom.id,
 
-                            DepartureDate = date
+                            date_departure = date
                         };
 
-                        andreeva_tz.BorrowRoom.Remove(borowwRoom);
+                        andreeva_tz.borrow_room.Remove(borowwRoom);
 
-                        if (Comment.Text != null) bookingHistory.Cause = Comment.Text;
+                        if (Comment.Text != null) bookingHistory.cause = Comment.Text;
 
-                        andreeva_tz.BookingHistory.Add(bookingHistory);
+                        andreeva_tz.booking_history.Add(bookingHistory);
                         andreeva_tz.SaveChanges();
 
                         NavigationService.GoBack();
@@ -110,13 +110,13 @@ namespace Andreeva_TZv2
 
         private void UpdateComboBox()
         {
-            foreach (BD.Client r in andreeva_tz.Client.ToList())
+            foreach (BD.client r in andreeva_tz.client.ToList())
             {
-                LoginClient.Items.Add(r.Login);
+                LoginClient.Items.Add(r.phone);
             }
-            foreach (BD.InfoRoom r in andreeva_tz.InfoRoom.ToList())
+            foreach (BD.info_room r in andreeva_tz.info_room.ToList())
             {
-                NumberRoom.Items.Add(r.NumberRoom);
+                NumberRoom.Items.Add(r.num_room);
             }
         }
 
