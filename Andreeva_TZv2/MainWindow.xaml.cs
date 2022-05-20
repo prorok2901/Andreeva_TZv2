@@ -153,7 +153,6 @@ namespace Andreeva_TZv2
                 box.Foreground = (Brush)bc.ConvertFrom("#404142");
             }
         }
-        //добавить таблицу статус юзера
 
         private void Inkognito_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -177,6 +176,5 @@ namespace Andreeva_TZv2
 
 
         }
-        //Спектакль Джо - Портрет
     }
 }
