@@ -5,81 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Andreeva_TZv2"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="♥ День и Ночь ♠" Height="380" Width="397">
-    <Window.Resources>
-
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#e6bf79"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#a98434"/>
-        <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
-            <Setter Property="PasswordChar" Value="●"/>
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type PasswordBox}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,3" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
-
+        Title="♥ День и Ночь ♠"  Height="360" Width="674">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\student\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\fsdfgh1.png"/>
+        <ImageBrush ImageSource="\Image\BackgroundImage.png"/>
     </Window.Background>
     
     <Grid>
-
-        <TextBlock Margin="86,25,87,295" Text="♥День и ночь♠" FontFamily="Arial Rounded MT Bold" FontSize="18" TextAlignment="Center"/>
-        <Border Margin="25,57,19,24" CornerRadius="23"  Background = "#F5DEB3" BorderBrush="Silver">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="75*"/>
-                    <RowDefinition Height="71*"/>
-                    <RowDefinition Height="74*"/>
-                    <RowDefinition Height="46*"/>
-                </Grid.RowDefinitions>
-                <TextBox Style="{DynamicResource TextBoxK}" RenderTransformOrigin="0.5,0.5" x:Name="Login" Margin="75,8,76,10" Text="Введите логин" GotFocus="Login_GotFocus" LostKeyboardFocus="Login_LostFocus"/>
-                <TextBox Style="{DynamicResource TextBoxK}" RenderTransformOrigin="0.5,0.5" x:Name="Password" Grid.Row="1" Margin="75,6,76,10"  Text="Введите пароль" />
-                <PasswordBox Style="{DynamicResource PasswordBoxStyle}" RenderTransformOrigin="0.5,0.5" x:Name="MaskaPassword" Grid.Row="1" Margin="75,6,76,10" GotFocus="Password_GotFocus" LostKeyboardFocus="Password_LostFocus"/>
-
-                <Image x:Name="Inkognito" Margin="250,31,61,13" Grid.Row="1" MouseDown="Inkognito_MouseDown" Source="/zamokZAK.png" />
-
-                <Button Style="{DynamicResource ButtonK}" Content="Войти" FontSize="18" FontStyle="Italic" FontWeight="Bold" Click="Button_Click" Grid.Row="2" Margin="126,14,127,13"/>
-                <Button Style="{DynamicResource ButtonK}" Content="Выйти из системы" FontStyle="Italic" FontWeight="Bold" Click="Button_Click_1" FontSize="14" Grid.Row="3" Margin="94,1,95,10"/>
-            </Grid>
-        </Border>
-       
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

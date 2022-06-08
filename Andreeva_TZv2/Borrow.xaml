@@ -10,7 +10,7 @@
 >
 
     <Grid>
-        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Silver" CornerRadius="13">
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Black" BorderThickness="1" CornerRadius="13">
             <Grid>
 
                 <TextBlock Text="Логин клиента: " RenderTransformOrigin="0.515,0.486" Margin="88,10,195,222" FontSize="14"/>
@@ -21,7 +21,7 @@
                 <Button Style="{DynamicResource ButtonK}" Content="Информация о номере" Margin="242,117,10,111" Click="Button_Click_1"/>
                 
                 <TextBlock Text="Номер в отеле: " Margin="74,122,219,114" FontSize="14"/>
-                <TextBox x:Name="NumberRoomHotel" Background="#F5DEB3" BorderThickness="0,0,0,0"  Margin="180,119,155,114" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" IsReadOnly="True" Cursor="Arrow"/>
+                <TextBox x:Name="NumberRoomHotel" Background="#F5DEB3" BorderThickness="0,0,0,0"  Margin="180,117,161,109" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" IsReadOnly="True" Cursor="Arrow"/>
 
                 <TextBox Text="Дата заселения" x:Name="DataZaseleniya" Style="{DynamicResource TextBoxK}" HorizontalAlignment="Left" Height="27" Margin="38,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="137" LostFocus="TextBox_LostFocus_1" GotFocus="TextBox_GotFocus_1" FontSize="14"/>
 

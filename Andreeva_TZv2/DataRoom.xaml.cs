@@ -1,45 +1,42 @@
-﻿using System;
+﻿using Andreeva_TZv2.Сompound;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 namespace Andreeva_TZv2
 {
-    /// <summary>
-    /// Логика взаимодействия для DataRoom.xaml
-    /// </summary>
     public partial class DataRoom : Page
     {
-        private InformationRoom infoRoom;
+        private int countDay;
 
-        BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
+        private DateTime enterDate;
+        private DateTime lastDate;
 
-        DateTime enterDate;
-        DateTime lastDate;
-        TextBox textBox;
-        int countDay;
-        TextBox price;
-        public DataRoom(TextBox box, int _countDay, TextBox _price, DateTime _enterDate)
+        private TextBox textBox;
+        private TextBox price;
+
+        public DataRoom(TextBox _box, int _countDay, TextBox _price, DateTime _enterDate)
         {
             InitializeComponent();
-            textBox = box;
+            textBox = _box;
             countDay = _countDay;
             price = _price;
             enterDate = _enterDate;
             ComboBoxDATA();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object _sender, RoutedEventArgs _e)
         {
             DateTime dateLast;
             ListRoom.Items.Clear();
             BD.borrow_room borrowRoom;
 
 
-            foreach (BD.info_room room in andreeva_TZ.info_room)
+            foreach (BD.info_room room in Connector.DataBase().info_room)
             {
                 lastDate = enterDate.AddDays(countDay);
 
-                borrowRoom = (BD.borrow_room)andreeva_TZ.borrow_room.Where(a => a.room == room.num_room).FirstOrDefault();
+                borrowRoom = Connector.DataBase().borrow_room.FirstOrDefault(a => a.room == room.num_room && room.status_room == "Рабоет");
                 if (borrowRoom!=null)
                 {
                     dateLast = borrowRoom.date_settlement.AddDays(borrowRoom.count_day);
@@ -48,7 +45,6 @@ namespace Andreeva_TZv2
                     {
                        
                     }
-                    
                 }
                 else
                 {
@@ -56,19 +52,19 @@ namespace Andreeva_TZv2
                 }
             }
         }
-        private void Proverka(BD.info_room room)
+        private void Proverka(BD.info_room _room)
         {
-            if((TypeRoom.Text == room.type_room) && (int.Parse(CountPeople.Text) >= room.capacity) && (int.Parse(CountRoom.Text) == room.count_room))
+            if((TypeRoom.Text == _room.type_room) && (int.Parse(CountPeople.Text) >= _room.capacity) && (int.Parse(CountRoom.Text) == _room.count_room))
             {
-                CreateButtonRoom(room);
+                CreateButtonRoom(_room);
             }
         }
 
-        private void CreateButtonRoom(BD.info_room room)
+        private void CreateButtonRoom(BD.info_room _room)
         {
             Button numberRoom = new Button
             {
-                Content = room.num_room,
+                Content = _room.num_room,
 
             };
             numberRoom.Width = 60;
@@ -78,12 +74,10 @@ namespace Andreeva_TZv2
             ListRoom.Items.Add(numberRoom);
         }
 
-        private void InformationRoom(object sender, RoutedEventArgs e)
+        private void InformationRoom(object _sender, RoutedEventArgs _e)
         {
-            int numberRoom = int.Parse((sender as Button).Content.ToString());
-            infoRoom = new InformationRoom(numberRoom, textBox, countDay, price);
-            InfoRoom.Navigate(infoRoom);
-
+            int numberRoom = int.Parse((_sender as Button).Content.ToString());
+            InfoRoom.Navigate(Pages.InformationRoomPage(numberRoom, textBox, countDay, price));
         }
 
         private void ComboBoxDATA()

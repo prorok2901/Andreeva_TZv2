@@ -10,17 +10,17 @@
 >
 
     <Grid>
-        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Silver" CornerRadius="13">
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Black" BorderThickness="1" CornerRadius="13">
             <Grid>
 
                 <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="99,6,195,230" Name="TypeRoom"/>
-                <Label Margin="11,6,291,226" Content="Класс номера:"/>
+                <TextBlock Margin="11,6,291,226" Text="Класс номера:"/>
 
-                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="342,31,10,207" Name="CountPeople"/>
-                <Label Margin="244,27,69,207" Content="Кол-во чел:"/>
+                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="330,26,22,212" Name="CountPeople"/>
+                <TextBlock Margin="250,26,63,208" Text="Кол-во чел:"/>
 
-                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="342,10,10,228" Name="CountRoom" Text=""/>
-                <Label Margin="244,6,49,230" Content="Кол-во комнат:"/>
+                <ComboBox Template="{DynamicResource ComboBoxPeredelka}" Margin="330,6,22,232" Name="CountRoom" Text=""/>
+                <TextBlock Margin="232,6,61,230" Text="Кол-во комнат:"/>
 
                 <ListBox Style="{DynamicResource ListBoxOKR}" Margin="10,71,290,10" x:Name="ListRoom" BorderBrush="#FFE6BF79" FontSize="14" Background="#F5DEB3" HorizontalContentAlignment="Center"/>
 

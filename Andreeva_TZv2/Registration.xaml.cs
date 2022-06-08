@@ -1,72 +1,75 @@
-﻿using System.Linq;
+﻿using Andreeva_TZv2.Сompound;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Navigation;
+
 
 
 namespace Andreeva_TZv2
 {
-    /// <summary>
-    /// Логика взаимодействия для Registration.xaml
-    /// </summary>
     public partial class Registration : Page
     {
-        ComboBox login;
-        BD.DayAndNightEntities andreeva_tz = new BD.DayAndNightEntities();
+        private СonfirmationСode сonfirmation;
+
+        private ComboBox login;
+
+        private string confirmationСode;
+
         public Registration(ComboBox _login)
         {
             login = _login;
             InitializeComponent();
-
         }
 
-        private void TextBox_TouchEnter(object sender, TouchEventArgs e)
-        {
-            //отправка смс на телефон
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object _sender, RoutedEventArgs _e)
         {  
-            if((BD.client)andreeva_tz.client.Where(a => a.phone == PhoneClient.Text).FirstOrDefault() == null)
+            if(Connector.DataBase().client.FirstOrDefault(a => a.email_Adress == EmailAdressClient.Text) == null)
             {
-                if(CodePOD.Text == "123")
+                if(CodePOD.Text == confirmationСode)
                 {
                     BD.client client = new BD.client
                     {
-                        phone = PhoneClient.Text,
-                        name = NameBox.Text
+                        email_Adress = EmailAdressClient.Text,
+                        name = NameBox.Text,
+                        passport_details = PassportDataBox.Text
                     };
-                    andreeva_tz.client.Add(client);
-                    andreeva_tz.SaveChanges();
+                    Connector.DataBase().client.Add(client);
+                    Connector.DataBase().SaveChanges();
                     ComboBoxLogin();
+                    NavigationService.GoBack();
                 }
-                MessageBox.Show("Не праильный код подтверждения");
+                else
+                {
+                    MessageBox.Show("Не праильный код подтверждения");
+                }
             }
             else
             {
                 MessageBox.Show("Такой номер есть, возможно клиент у нас был");
+                NavigationService.GoBack();
             }
-            NavigationService.GoBack();
+            
         }
+
         private void ComboBoxLogin()
         {
             login.Items.Clear();
-            foreach (BD.client r in andreeva_tz.client.ToList())
+            foreach (BD.client r in Connector.DataBase().client.ToList())
             {
-                login.Items.Add(r.phone);
+                login.Items.Add(r.email_Adress);
             }
         }
 
 
-        private void NameBox_GotFocus(object sender, RoutedEventArgs e)
+        private void NameBox_GotFocus(object _sender, RoutedEventArgs _e)
         {
             if (NameBox.Text == "Введите имя клиента")
             {
                 NameBox.Text = "";
             }
         }
-
-        private void NameBox_LostFocus(object sender, RoutedEventArgs e)
+        private void NameBox_LostFocus(object _sender, RoutedEventArgs _e)
         {
             if (NameBox.Text == "")
             {
@@ -74,20 +77,45 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void PhoneClient_LostFocus(object sender, RoutedEventArgs e)
+        private void EmailClient_LostFocus(object _sender, RoutedEventArgs _e)
         {
-            if (PhoneClient.Text == "")
+            if (EmailAdressClient.Text == "")
             {
-                PhoneClient.Text = "Введите телефон клиента";
+                EmailAdressClient.Text = "Электронный адрес клиента";
+            }
+            EmailCode();
+        }
+        private void EmailClient_GotFocus(object _sender, RoutedEventArgs _e)
+        {
+
+            if (EmailAdressClient.Text == "Электронный адрес клиента")
+            {
+                EmailAdressClient.Text = "";
             }
         }
 
-        private void PhoneClient_GotFocus(object sender, RoutedEventArgs e)
+        private void PassportData_LostFocus(object _sender, RoutedEventArgs _e)
+        {
+            if (PassportDataBox.Text == "")
+            {
+                PassportDataBox.Text = "Серия и номер паспорта клиента";
+            }
+        }
+        private void PassportData_GotFocus(object _sender, RoutedEventArgs _e)
         {
 
-            if (PhoneClient.Text == "Введите телефон клиента")
+            if (PassportDataBox.Text == "Серия и номер паспорта клиента")
             {
-                PhoneClient.Text = "";
+                PassportDataBox.Text = "";
+            }
+        }
+
+        private void EmailCode()
+        {
+            if(EmailAdressClient.Text != "" && NameBox.Text != "")
+            {
+                сonfirmation = new СonfirmationСode(EmailAdressClient.Text, NameBox.Text);
+                confirmationСode = сonfirmation.GetСonfirmationСode();
             }
         }
     }

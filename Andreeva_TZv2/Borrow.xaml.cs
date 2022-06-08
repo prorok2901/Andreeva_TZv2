@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Andreeva_TZv2.Сompound;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,11 +10,7 @@ namespace Andreeva_TZv2
 {
     public partial class Borrow : Page
     {
-        BD.user admin;
-        Registration registration;
-        static DataRoom informationRoom;
-
-        BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
+        private BD.user admin;
 
         public Borrow(BD.user _admin)
         {
@@ -22,25 +19,25 @@ namespace Andreeva_TZv2
             admin = _admin;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object _sender, RoutedEventArgs _e)
         {
             if(loginClient.SelectedIndex != -1 && CountDay.Text != null &&
                 DataZaseleniya.Text != null)
             {
                 if(CodePOD.Text == "123")
                 {
-                    BD.client client = andreeva_TZ.client.Where(a => a.phone == loginClient.Text).FirstOrDefault();
+                    BD.client client = Connector.DataBase().client.FirstOrDefault(a => a.email_Adress == loginClient.Text);
 
                     BD.borrow_room borrow = new BD.borrow_room
                     {
                         room = int.Parse(NumberRoomHotel.Text),
                         count_day = int.Parse(CountDay.Text),
-                        client = client.phone,
-                        administrator = admin.login,
+                        client = client.email_Adress,
+                        administrator = admin.id,
                         date_settlement = DateTime.Parse(DataZaseleniya.Text),
                     };
-                    andreeva_TZ.borrow_room.Add(borrow);
-                    andreeva_TZ.SaveChanges();
+                    Connector.DataBase().borrow_room.Add(borrow);
+                    Connector.DataBase().SaveChanges();
 
                     MessageBox.Show("Успех!");
                 }
@@ -55,13 +52,12 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object _sender, RoutedEventArgs _e)
         {
             try
             {
                 int countDay = int.Parse(CountDay.Text);
-                informationRoom = new DataRoom(NumberRoomHotel, countDay, PriceBox, DateTime.Parse(DataZaseleniya.Text));
-                NavigationService.Navigate(informationRoom);
+                NavigationService.Navigate(Pages.DataRoomsPage(NumberRoomHotel, countDay, PriceBox, DateTime.Parse(DataZaseleniya.Text)));
             }
             catch
             {
@@ -70,20 +66,19 @@ namespace Andreeva_TZv2
            
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object _sender, RoutedEventArgs _e)
         {
-            registration = new Registration(loginClient);
-            NavigationService.Navigate(registration);
+            NavigationService.Navigate(Pages.RegistrationPage(loginClient));
         }
         private void ComboBoxLogin()
         {
-            foreach (BD.client r in andreeva_TZ.client.ToList())
+            foreach (BD.client r in Connector.DataBase().client.ToList())
             {
-                loginClient.Items.Add(r.phone);
+                loginClient.Items.Add(r.email_Adress);
             }
         }
 
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void TextBox_LostFocus(object _sender, RoutedEventArgs _e)
         {
             if (CountDay.Text == "")
             {
@@ -92,7 +87,7 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBox_GotFocus(object _sender, RoutedEventArgs _e)
         {
             if (CountDay.Text == "Кол-во дней:")
             {
@@ -100,7 +95,7 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void TextBox_LostFocus_1(object sender, RoutedEventArgs e)
+        private void TextBox_LostFocus_1(object _sender, RoutedEventArgs _e)
         {
             if (DataZaseleniya.Text == "")
             {
@@ -109,7 +104,7 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
+        private void TextBox_GotFocus_1(object _sender, RoutedEventArgs _e)
         {
             if (DataZaseleniya.Text == "Дата заселения")
             {
@@ -117,7 +112,7 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void TextBox_GotFocus_2(object sender, RoutedEventArgs e)
+        private void TextBox_GotFocus_2(object _sender, RoutedEventArgs _e)
         {
             if (CodePOD.Text == "Код подтверждения")
             {
@@ -125,7 +120,7 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void TextBox_LostFocus_2(object sender, RoutedEventArgs e)
+        private void TextBox_LostFocus_2(object _sender, RoutedEventArgs _e)
         {
             if (CodePOD.Text == "")
             {
@@ -134,17 +129,17 @@ namespace Andreeva_TZv2
             }
         }
 
-        private void CollorText(TextBox box, bool proverka)
+        private void CollorText(TextBox _box, bool _proverka)
         {
             var bc = new BrushConverter();
-            if (proverka == true)
+            if (_proverka == true)
             {
-                box.Text = null;
-                box.Foreground = Brushes.Black;
+                _box.Text = null;
+                _box.Foreground = Brushes.Black;
             }
             else
             {
-                box.Foreground = (Brush)bc.ConvertFrom("#404142");
+                _box.Foreground = (Brush)bc.ConvertFrom("#404142");
             }
         }
     }

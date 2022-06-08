@@ -12,19 +12,12 @@ namespace Andreeva_TZv2.BD
     using System;
     using System.Collections.Generic;
     
-    public partial class client
+    public partial class blocking
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public client()
-        {
-            this.borrow_room = new HashSet<borrow_room>();
-        }
+        public int id { get; set; }
+        public System.DateTime block_time { get; set; }
+        public Nullable<int> block_user { get; set; }
     
-        public string email_Adress { get; set; }
-        public string name { get; set; }
-        public string passport_details { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<borrow_room> borrow_room { get; set; }
+        public virtual user user { get; set; }
     }
 }

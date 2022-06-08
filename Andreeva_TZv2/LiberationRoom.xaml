@@ -9,7 +9,7 @@
       Title="LiberationRoom">
 
     <Grid>
-        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Silver" CornerRadius="13">
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Black" CornerRadius="13" BorderThickness="1">
             <Grid>
 
                 <TextBlock Text="Логин клиента: " RenderTransformOrigin="0.515,0.486" Margin="71,14,223,218"/>

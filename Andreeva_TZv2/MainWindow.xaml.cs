@@ -1,12 +1,6 @@
-﻿using System;
+﻿using Andreeva_TZv2.Сompound;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-
-// e6bf79 a98434 FFC373 F5DEB3
 
 namespace Andreeva_TZv2
 {
@@ -32,149 +26,26 @@ namespace Andreeva_TZv2
     */
     public partial class MainWindow : Window
     {
-        static Functional _functional;
-        BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
-
-        static bool InKognito = true;
-
-        BD.user admin;
-
         public MainWindow()
         {
             InitializeComponent();
-            FillDAtaBase();
+            ProverkaBD();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ProverkaBD()
         {
-            if (Login.Text != null)
+            BD.info_room room = Connector.DataBase().info_room.FirstOrDefault();
+            BD.user user = Connector.DataBase().user.FirstOrDefault(a=>a.role == "администратор");
+
+            if (room != null && user != null)
             {
-                string login = Login.Text;
-
-                if (Password.Text != null || Password.Text != "Введите пароль")
-                {
-                    Password.Text = MaskaPassword.Password;
-                    string password = Password.Text;
-                    BD.user basa = (BD.user)andreeva_TZ.user.Where(a => a.login == login && a.password == password && a.role == "администратор").FirstOrDefault();
-                    if (basa != null)
-                    {
-                        admin = basa;
-                        _functional = new Functional(admin);
-                        if (_functional != null)
-                        {
-                            _functional.Show();
-                        }
-                        else
-                        {
-                            _functional.Activate();
-                        }
-                        Visibility = Visibility.Hidden;
-                    }
-                    else
-                    {
-                        Password.Text = "Введите пароль";
-                        MaskaPassword.Password = "";
-                        MessageBox.Show("Косяк" + password);
-                    }
-                }
-                else
-                {
-
-                    MessageBox.Show("Вы не ввели пароль");
-                    return;
-                }
+                MainFrame.Navigate(Pages.AuthorizationData());
             }
             else
             {
-                MessageBox.Show("Вы не ввели логин");
+                MessageBox.Show("Похоже вы спешите использовать это приложение");
+                Close();
             }
-        }
-
-        public void WindowHidder()
-        {
-            _functional.Visibility = Visibility.Hidden;
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void FillDAtaBase()
-        {
-
-        }
-
-        private void Password_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (Password.Text == "Введите пароль")
-            {
-                CollorText(Password, true);
-            }
-        }
-        private void Password_LostFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            if (MaskaPassword.Password == "")
-            {
-                Password.Text = "Введите пароль";
-                CollorText(Password, false);
-                Password.Opacity = 1;
-                MaskaPassword.Opacity = 0;
-            }
-
-        }
-        private void Login_GotFocus(object sender, RoutedEventArgs e)
-        {
-
-            if (Login.Text == "Введите логин")
-            {
-                CollorText(Login, true);
-            }
-        }
-
-        private void Login_LostFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            if (Login.Text == "")
-            {
-                Login.Text = "Введите логин";
-                CollorText(Login, false);
-            }
-        }
-        private void CollorText(TextBox box, bool proverka)
-        {
-            var bc = new BrushConverter();
-            if (proverka == true)
-            {
-                box.Text = null;
-                box.Foreground = Brushes.Black;
-            }
-            else
-            {
-                box.Foreground = (Brush)bc.ConvertFrom("#404142");
-            }
-        }
-
-        private void Inkognito_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (InKognito)
-            {
-                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokOTK.png"));
-                Password.Opacity = 1;
-                MaskaPassword.Opacity = 0;
-                Password.Text = MaskaPassword.Password;
-                InKognito = false;
-                MaskaPassword.IsEnabled = false;
-            }
-            else
-            {
-                Inkognito.Source = BitmapFrame.Create(new Uri(@"C:\Users\proro\Source\Repos\prorok2901\Andreeva_TZv2\Andreeva_TZv2\zamokZAK.png"));
-                Password.Opacity = 0;
-                MaskaPassword.Opacity = 1;
-                InKognito = true;
-                MaskaPassword.IsEnabled = true;
-            }
-
-
         }
     }
 }

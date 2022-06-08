@@ -9,13 +9,15 @@
 >
 
     <Grid>
-        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Silver" CornerRadius="13">
-            <Grid> 
-                <TextBox x:Name="PhoneClient" Style="{DynamicResource TextBoxK}" Height="35" Margin="69,95,69,130" Text="Введите телефон клиента" TouchEnter="TextBox_TouchEnter" LostFocus="PhoneClient_LostFocus" GotFocus="PhoneClient_GotFocus"/>
-                <TextBox x:Name ="NameBox" Style="{DynamicResource TextBoxK}" Height="37" Margin="86,42,86,181" Text="Введите имя клиента" GotFocus="NameBox_GotFocus" LostFocus="NameBox_LostFocus"/>
-                <TextBox x:Name="CodePOD" Margin="101,147,101,82" Style="{DynamicResource TextBoxK}" TouchEnter="TextBox_TouchEnter" Text="Код подтверждения"/>
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,10,10,10" Background = "#F5DEB3" BorderBrush="Black" BorderThickness="1" CornerRadius="13">
+            <Grid>
+                <TextBox x:Name ="NameBox" Style="{DynamicResource TextBoxK}" Height="37" Margin="52,10,52,211" Text="Введите имя клиента" GotFocus="NameBox_GotFocus" LostFocus="NameBox_LostFocus"/>
+                <TextBox x:Name="EmailAdressClient" Style="{DynamicResource TextBoxK}" Height="35" Margin="52,58,52,165" Text="Электронный адрес клиента" LostFocus="EmailClient_LostFocus" GotFocus="EmailClient_GotFocus"/>
+                <TextBox x:Name ="PassportDataBox" Style="{DynamicResource TextBoxK}" Height="37" Margin="52,105,52,116" Text="Серия и номер паспорта клиента" GotFocus="PassportData_GotFocus" LostFocus="PassportData_LostFocus"/>
+                
+                <TextBox x:Name="CodePOD" Margin="101,179,101,50" Style="{DynamicResource TextBoxK}" Text="Код подтверждения"/>
 
-                <Button Style="{DynamicResource ButtonK}" Margin="136,213,136,21" Content="Зарегистрировать" Click="Button_Click"/>
+                <Button Style="{DynamicResource ButtonK}" Margin="136,224,136,10" Content="Зарегистрировать" Click="Button_Click"/>
 
             </Grid>
         </Border>

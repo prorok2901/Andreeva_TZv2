@@ -23,15 +23,15 @@ namespace Andreeva_TZv2.BD
         public int id { get; set; }
         public int room { get; set; }
         public string client { get; set; }
-        public string administrator { get; set; }
+        public int administrator { get; set; }
         public string status { get; set; }
         public int count_day { get; set; }
         public System.DateTime date_settlement { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<booking_history> booking_history { get; set; }
         public virtual info_room info_room { get; set; }
         public virtual client client1 { get; set; }
         public virtual user user { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<booking_history> booking_history { get; set; }
     }
 }

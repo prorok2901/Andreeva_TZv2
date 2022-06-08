@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Andreeva_TZv2.Сompound;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -10,42 +11,37 @@ namespace Andreeva_TZv2
     /// </summary>
     public partial class InformationRoom : Page
     {
-        TextBox box;
-        int numberRoom;
-        int countDay;
-        TextBox price;
+        private int numberRoom;
+        private int countDay;
+
+        private TextBox box;
+        private TextBox price;
 
         decimal priceRoom;
-
-        BD.DayAndNightEntities andreeva_TZ = new BD.DayAndNightEntities();
-        public InformationRoom(int _numberRoom, TextBox text, int _countDay, TextBox _price)
+        public InformationRoom(int _numberRoom, TextBox _text, int _countDay, TextBox _price)
         {
             InitializeComponent();
             numberRoom = _numberRoom;
-            box = text;
+            box = _text;
             countDay = _countDay;
             price = _price;
             if (numberRoom != 0)
             {
-                BD.info_room basa = (BD.info_room)andreeva_TZ.info_room.Where(a => a.num_room == numberRoom).FirstOrDefault();
+                BD.info_room basa = Connector.DataBase().info_room.FirstOrDefault(a => a.num_room == numberRoom);
                 if (basa != null)
                 {
                     CountRoom.Text = basa.count_room.ToString();
                     priceRoom = basa.price;
                     Price.Text = basa.price.ToString();
-                    Info.Text = basa.short_description;
+                    Info.Text = basa.chort_description;
                 }
-            }
-            else
-            {
-                MessageBox.Show("dfjhskfhcgj");
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object _sender, RoutedEventArgs _e)
         {
             price.Text = (priceRoom * countDay).ToString();
-            box.Text = (numberRoom).ToString(); 
+            box.Text = (numberRoom).ToString();
             NavigationService.GoBack();
         }
     }
