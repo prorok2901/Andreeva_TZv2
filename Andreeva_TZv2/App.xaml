@@ -99,6 +99,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        
         <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="#F5DEB3" Offset="0.0"/>
             <GradientStop Color="#F5DEB3" Offset="1.0"/>

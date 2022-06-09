@@ -9,7 +9,6 @@ using System.Windows.Media.Imaging;
 
 namespace Andreeva_TZv2
 {
-
     public partial class AuthorizationUser : Page
     {
         private BD.user admin;

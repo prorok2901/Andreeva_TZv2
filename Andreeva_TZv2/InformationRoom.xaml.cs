@@ -6,9 +6,6 @@ using System.Windows.Navigation;
 
 namespace Andreeva_TZv2
 {
-    /// <summary>
-    /// Логика взаимодействия для InformationRoom.xaml
-    /// </summary>
     public partial class InformationRoom : Page
     {
         private int numberRoom;
