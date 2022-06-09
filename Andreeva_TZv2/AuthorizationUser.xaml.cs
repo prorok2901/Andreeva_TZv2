@@ -105,6 +105,10 @@ namespace Andreeva_TZv2
             {
                 Password.Text = MaskaPassword.Password;
             }
+            else
+            {
+                Password.Text = "Введите пароль";
+            }
             MaskaPassword.IsEnabled = false;
             
         }
