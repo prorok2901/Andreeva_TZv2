@@ -82,7 +82,8 @@ namespace Andreeva_TZv2
             
             if (Login.Text == "Введите логин")
             {
-                Login.Foreground = Brushes.Black;
+                Login.Text = "";
+                Login.Foreground = Brushes.Black;   
             }
         }
         private void Login_LostFocus(object _sender, KeyboardFocusChangedEventArgs _e)
